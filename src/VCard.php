@@ -233,8 +233,8 @@ class VCard
         if (filter_var($url, FILTER_VALIDATE_URL) !== false) {
             $headers = get_headers($url, 1);
 
-            if (array_key_exists('Content-Type', $headers)) {
-                $mimeType = $headers['Content-Type'];
+            if (array_key_exists('Content-Type', $headers) || array_key_exists('content-type', $headers)) {
+                $mimeType = $headers['Content-Type'] ?? $headers['content-type'];
                 if (is_array($mimeType)) {
                     $mimeType = end($mimeType);
                 }
